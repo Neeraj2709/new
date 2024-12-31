@@ -3,7 +3,8 @@ import AuthHeader from '../components/auth/AuthHeader';
 import LoginForm from '../components/auth/LoginForm';
 import SignupForm from '../components/auth/SignupForm';
 import ResetPasswordForm from '../components/auth/ResetPasswordForm';
-
+import VerifyEmailForm from '../components/auth/VerifyEmailForm';
+import EmailVerified from "../components/auth/EmailVerified";
 const Authentication = () => {
   const [showForm, setShowForm] = useState('login');
 
@@ -22,6 +23,8 @@ const Authentication = () => {
         {showForm === 'login' && <LoginForm onSwitchForm={switchForm} />}
         {showForm === 'signup' && <SignupForm onSwitchForm={switchForm} />}
         {showForm === 'reset' && <ResetPasswordForm onSwitchForm={switchForm} />}
+        {showForm === 'verify-email' && <VerifyEmailForm onSwitchForm={switchForm} />}
+        {showForm === 'email-verified' && <EmailVerified onSwitchForm={switchForm} />}
       </div>
     </div>
   );
