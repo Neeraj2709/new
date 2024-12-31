@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import AddressForm from "./AddressForm"; // Import AddressForm
 
 const SignupForm = ({ onSwitchForm }) => {
   const formik = useFormik({
@@ -168,9 +169,9 @@ const SignupForm = ({ onSwitchForm }) => {
           </form>
           <p className="text-center mt-4 text-sm text-gray-500">
             Already have an account?{" "}
-            <a href="/signin" className="text-blue-600 hover:underline">
+            <button onClick={() => onSwitchForm("login")} className="text-blue-600 hover:underline">
               Sign in
-            </a>
+            </button>
           </p>
         </div>
       </div>

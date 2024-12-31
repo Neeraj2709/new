@@ -5,11 +5,22 @@ import SignupForm from '../components/auth/SignupForm';
 import ResetPasswordForm from '../components/auth/ResetPasswordForm';
 import VerifyEmailForm from '../components/auth/VerifyEmailForm';
 import EmailVerified from "../components/auth/EmailVerified";
+import AddressForm from "../components/auth/AddressForm";
+import SignupSuccess from "../components/auth/SignupSuccess"; // Import SignupSuccess
+import SetPasswordForm from "../components/auth/SetPasswordForm"; // Import SetPasswordForm
+import EmailVerifiedMessage from "../components/auth/EmailVerifiedMessage"; // Import EmailVerifiedMessage
+import CheckYourEmail from "../components/auth/CheckYourEmail"; // Import CheckYourEmail
+import SetNewPasswordForm from "../components/auth/SetNewPasswordForm"; // Import SetNewPasswordForm
+import PasswordResetSuccess from "../components/auth/PasswordResetSuccess"; // Import PasswordResetSuccess
 const Authentication = () => {
   const [showForm, setShowForm] = useState('login');
+  const [email, setEmail] = useState('');
 
-  const switchForm = (formName) => {
+  const switchForm = (formName, email = '') => {
     setShowForm(formName);
+    if (email) {
+      setEmail(email);
+    }
   };
 
   return (
@@ -25,6 +36,14 @@ const Authentication = () => {
         {showForm === 'reset' && <ResetPasswordForm onSwitchForm={switchForm} />}
         {showForm === 'verify-email' && <VerifyEmailForm onSwitchForm={switchForm} />}
         {showForm === 'email-verified' && <EmailVerified onSwitchForm={switchForm} />}
+        {showForm === 'signup-success' && <SignupSuccess onSwitchForm={switchForm} />} {/* Add SignupSuccess */}
+        {showForm === 'set-password' && <SetPasswordForm onSwitchForm={switchForm} />} {/* Add SetPasswordForm */}
+        {showForm === 'address' && <AddressForm onSwitchForm={switchForm} />} {/* Add AddressForm */}
+        {showForm === 'email-verified-message' && <EmailVerifiedMessage onSwitchForm={switchForm} />} {/* Add EmailVerifiedMessage */}
+        {showForm === 'check-your-email' && <CheckYourEmail email={email} onSwitchForm={switchForm} />} {/* Add CheckYourEmail */}
+        {showForm === 'set-new-password' && <SetNewPasswordForm onSwitchForm={switchForm} />} {/* Add SetNewPasswordForm */}
+        {showForm === 'password-reset-success' && <PasswordResetSuccess onSwitchForm={switchForm} />} {/* Add PasswordResetSuccess */}
+        
       </div>
     </div>
   );

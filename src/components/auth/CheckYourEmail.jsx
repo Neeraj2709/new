@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
-const ResetPasswordForm = ({ onSwitchForm }) => {
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Reset password email:", email);
-    // Mock API call or logic
-    onSwitchForm("check-your-email", email); // Move to the "Check Your Email" step
+const CheckYourEmail = ({ email, onSwitchForm }) => {
+  const handleResendEmail = () => {
+    console.log("Resend email to:", email);
+    // Mock API call or logic to resend the email
+    alert(`Successfully sent link to: ${email}`);
   };
 
   return (
@@ -38,44 +35,41 @@ const ResetPasswordForm = ({ onSwitchForm }) => {
           </div>
         </aside>
 
-        {/* Main form */}
+        {/* Main Content */}
         <div className="flex flex-col justify-center items-center flex-grow p-8">
-          <form className="w-full max-w-md bg-white p-6 rounded-lg shadow-md space-y-6" onSubmit={handleSubmit}>
+          <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md space-y-6">
             <header className="text-center">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Forgot password?</h1>
-              <p className="text-sm text-gray-600">No worries, we’ll send you reset instructions.</p>
+              <h1 className="text-3xl font-bold text-gray-900 mb-2">Check your email</h1>
+              <p className="text-sm text-gray-600">We sent a password reset link to {email}.</p>
             </header>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full border rounded-lg px-4 py-2 mt-2 border-gray-300 focus:ring-blue-200"
-              />
-            </div>
             <button
-              type="submit"
+              onClick={() => window.open('https://mail.google.com', '_blank')}
               className="w-full bg-blue-600 text-white rounded-lg px-4 py-2 mt-4 hover:bg-blue-700 transition"
             >
-              Reset Password
+              Open Email
             </button>
-          </form>
-          <p className="text-center mt-4 text-sm text-gray-500">
-            Already have an account?{" "}
-            <button onClick={() => onSwitchForm("login")} className="text-blue-600 hover:underline">
-              Sign in
-            </button>
-          </p>
+            <p className="text-center mt-4 text-sm text-gray-500">
+              Didn't receive email?{" "}
+              <button onClick={handleResendEmail} className="text-blue-600 hover:underline">
+                Click to resend
+              </button>
+            </p>
+            <p className="text-center mt-4 text-sm text-gray-500">
+              <button onClick={() => onSwitchForm("set-new-password")} className="text-blue-600 hover:underline">
+                Proceed to Set New Password
+              </button>
+            </p>
+            <p className="text-center mt-4 text-sm text-gray-500">
+              Already have an account?{" "}
+              <button onClick={() => onSwitchForm("login")} className="text-blue-600 hover:underline">
+                Sign in
+              </button>
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default ResetPasswordForm;
+export default CheckYourEmail;

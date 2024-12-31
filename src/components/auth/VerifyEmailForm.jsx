@@ -9,7 +9,8 @@ const VerifyEmailForm = ({ onSwitchForm }) => {
     if (code.length === 4) {
       console.log("Verification code:", code);
       // Mock API call or logic
-      onSwitchForm("email-verified"); // Move to the next step or show success message
+      onSwitchForm("email-verified-message"); // Move to the "Email Verified Message" step
+     
     } else {
       setError("Please enter a valid 4-digit code.");
     }
